@@ -322,11 +322,12 @@ h3 {
 }
 
 .resource-link-disabled {
-  border-color: #c7d0d4;
-  background: #e6ecef;
-  color: #6f7d84;
+  border-color: #aeb9bf;
+  background: #d5dde1;
+  color: #68757c;
   cursor: not-allowed;
   pointer-events: none;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.52);
 }
 
 .media-band {
