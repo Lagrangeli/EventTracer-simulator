@@ -152,17 +152,17 @@ button {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  margin-bottom: 18px;
+  gap: 12px;
+  margin-bottom: 20px;
 }
 
 .institution-logos {
-  --institution-logo-height: 42px;
+  --institution-logo-height: 58px;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 16px;
+  gap: 18px;
 }
 
 .institution-logo {
@@ -173,12 +173,12 @@ button {
 }
 
 .logo-hku {
-  max-width: 44px;
+  max-width: 60px;
 }
 
 .logo-thu {
-  max-width: 48px;
-  padding-left: 16px;
+  max-width: 64px;
+  padding-left: 18px;
   border-left: 1px solid var(--line);
 }
 
