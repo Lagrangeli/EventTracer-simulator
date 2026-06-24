@@ -162,7 +162,7 @@ button {
   align-items: center;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 14px;
+  gap: 16px;
 }
 
 .institution-logo {
@@ -176,14 +176,10 @@ button {
   max-width: 44px;
 }
 
-.institution-wordmark {
-  min-height: 42px;
-  display: inline-flex;
-  align-items: center;
+.logo-thu {
+  max-width: 48px;
+  padding-left: 16px;
   border-left: 1px solid var(--line);
-  color: #233238;
-  font-weight: 850;
-  padding-left: 14px;
 }
 
 .venue {

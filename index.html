@@ -32,12 +32,12 @@
         <div class="container hero-inner">
           <div class="hero-institution">
             <div class="institution-logos" aria-label="Institution logos">
-              <img class="institution-logo logo-hku" src="assets/logos/hku-logo.png" alt="The University of Hong Kong logo">
-              <span class="institution-wordmark">Tsinghua University</span>
+              <img class="institution-logo logo-hku" src="assets/logos/hku-logo.webp" alt="The University of Hong Kong logo">
+              <img class="institution-logo logo-thu" src="assets/logos/tsinghua-logo.webp" alt="Tsinghua University logo">
             </div>
             <p class="venue">IEEE TVCG 2026</p>
           </div>
-          <h1>EventTracer: Fast Path Tracing-based Event Stream Rendering</h1>
+          <h1>EventTracer: Fast Path Tracing-based<br>Event Stream Rendering</h1>
           <p class="authors">
             <span><strong><a href="https://lagrangeli.github.io/">Zhenyang Li<sup class="equal-mark" aria-label="equal contribution">*</sup></a></strong></span>
             <span><strong><a href="https://andrewbxy.github.io/">Xiaoyang Bai<sup class="equal-mark" aria-label="equal contribution">*</sup></a></strong></span>
@@ -63,7 +63,7 @@
         <div class="container">
           <h2 id="teaser-heading" class="visually-hidden">EventTracer overview</h2>
           <figure class="hero-figure">
-            <img src="assets/images/teaser_new.png" alt="EventTracer overview: event stream rendering from 3D scenes and downstream event-to-video and event-to-depth comparisons.">
+            <img src="assets/images/teaser_new.webp" alt="EventTracer overview: event stream rendering from 3D scenes and downstream event-to-video and event-to-depth comparisons.">
             <figcaption>
               EventTracer directly renders high-temporal-resolution event streams from 3D scenes and preserves details for downstream event-to-video and event-to-depth tasks.
             </figcaption>
@@ -121,7 +121,7 @@
           <h2>Use noisy high-FPS path tracing as the signal, then learn how an event sensor should fire.</h2>
           <div class="method-grid">
             <figure class="image-panel">
-              <img src="assets/images/pipeline_new.png" alt="EventTracer pipeline with path tracing, EvSNet training, ETScenes construction, and downstream evaluation.">
+              <img src="assets/images/pipeline_new.webp" alt="EventTracer pipeline with path tracing, EvSNet training, ETScenes construction, and downstream evaluation.">
               <figcaption>
                 EventTracer renders low-SPP and high-SPP sequences from 3D scenes, trains EvSNet with V2E-generated pseudo ground truth, and builds ETScenes for downstream validation.
               </figcaption>
@@ -138,7 +138,7 @@
 
           <div class="method-grid reverse">
             <figure class="image-panel">
-              <img src="assets/images/fig2_v7.png" alt="Internal state bias and saturation effect in event sensors.">
+              <img src="assets/images/fig2_v7.webp" alt="Internal state bias and saturation effect in event sensors.">
               <figcaption>
                 Event pixels with different internal states can fire at different timestamps under the same brightness change, and strong changes may create trailing events.
               </figcaption>
@@ -180,31 +180,31 @@
 
           <div class="result-stack">
             <figure class="image-panel">
-              <img src="assets/images/figure4.png" alt="Event stream comparisons between EventTracer, V2E, V2CE, and RGB frames.">
+              <img src="assets/images/figure4.webp" alt="Event stream comparisons between EventTracer, V2E, V2CE, and RGB frames.">
               <figcaption>
                 EventTracer preserves more high-frequency scene structures than V2E and V2CE across Bistro scenes, especially where camera motion creates alternating event signals.
               </figcaption>
             </figure>
             <figure class="image-panel compact-panel">
-              <img src="assets/images/histogram_new.png" alt="Event ratio histograms for EventTracer, V2E, V2CE, DVS-Voltmeter, and pseudo ground truth.">
+              <img src="assets/images/histogram_new.webp" alt="Event ratio histograms for EventTracer, V2E, V2CE, DVS-Voltmeter, and pseudo ground truth.">
               <figcaption>
                 Event ratio distributions are more concentrated and closer to pseudo ground truth; the Wasserstein distance is 32.4% lower than DVS-Voltmeter and about 64% lower than V2E/V2CE.
               </figcaption>
             </figure>
             <figure class="image-panel">
-              <img src="assets/images/main-viz-2.png" alt="Real2Sim event-to-video reconstruction comparisons.">
+              <img src="assets/images/main-viz-2.webp" alt="Real2Sim event-to-video reconstruction comparisons.">
               <figcaption>
                 In Event-to-Video reconstruction, simulated events from EventTracer retain details such as street tiles, windows, chairs, and paintings.
               </figcaption>
             </figure>
             <figure class="image-panel">
-              <img src="assets/images/main-viz-1.png" alt="Real2Sim event-to-depth estimation comparisons.">
+              <img src="assets/images/main-viz-1.webp" alt="Real2Sim event-to-depth estimation comparisons.">
               <figcaption>
                 In Event-to-Depth estimation, EventTracer events support more consistent layouts and clearer depth structures than V2E and V2CE.
               </figcaption>
             </figure>
             <figure class="image-panel">
-              <img src="assets/images/fast-comp.png" alt="Event simulation under fast motion with EventTracer, V2E, and V2CE.">
+              <img src="assets/images/fast-comp.webp" alt="Event simulation under fast motion with EventTracer, V2E, and V2CE.">
               <figcaption>
                 Under 10x faster camera motion, EventTracer produces trailing event activations that reflect saturation behavior in real event sensors.
               </figcaption>
