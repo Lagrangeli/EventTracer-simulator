@@ -321,6 +321,14 @@ h3 {
   color: #ffffff;
 }
 
+.resource-link-disabled {
+  border-color: #c7d0d4;
+  background: #e6ecef;
+  color: #6f7d84;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 .media-band {
   padding: 34px 0 8px;
 }
@@ -452,10 +460,12 @@ figcaption {
 }
 
 .metric-card {
-  min-height: 128px;
+  min-height: 112px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 8px;
+  padding: 18px 20px;
 }
 
 .metric-value {
@@ -468,6 +478,7 @@ figcaption {
 .metric-label {
   color: var(--muted);
   font-weight: 750;
+  line-height: 1.25;
 }
 
 .result-stack {
@@ -520,6 +531,15 @@ th {
 .video-shell {
   margin-top: 26px;
   background: #11181c;
+}
+
+.video-container {
+  width: min(calc(100% - 32px), 1040px);
+}
+
+.video-heading {
+  white-space: nowrap;
+  font-size: clamp(2.3rem, 4vw, 3rem);
 }
 
 .video-shell video {
@@ -636,14 +656,6 @@ th {
     gap: 10px;
   }
 
-  .institution-wordmark {
-    width: 100%;
-    min-height: 0;
-    justify-content: center;
-    border-left: 0;
-    padding-left: 0;
-  }
-
   .resource-row {
     align-items: stretch;
     flex-direction: column;
@@ -656,5 +668,9 @@ th {
   .section-heading-row {
     align-items: stretch;
     flex-direction: column;
+  }
+
+  .video-heading {
+    white-space: normal;
   }
 }
