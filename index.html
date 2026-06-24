@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="EventTracer: Fast Path Tracing-based Event Stream Rendering.">
+    <title>EventTracer | Fast Path Tracing-based Event Stream Rendering</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+  </head>
+  <body>
+    <header class="site-header" data-header>
+      <nav class="nav-wrap" aria-label="Primary navigation">
+        <a class="brand" href="#top">EventTracer</a>
+        <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" data-nav-toggle>
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div class="nav-links" data-nav-links>
+          <a href="#abstract">Abstract</a>
+          <a href="#features">Features</a>
+          <a href="#method">Method</a>
+          <a href="#results">Results</a>
+          <a href="#video">Video</a>
+          <a href="#bibtex">BibTeX</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="container hero-inner">
+          <div class="hero-institution">
+            <div class="institution-logos" aria-label="Institution logos">
+              <img class="institution-logo logo-hku" src="assets/logos/hku-logo.png" alt="The University of Hong Kong logo">
+              <span class="institution-wordmark">Tsinghua University</span>
+            </div>
+            <p class="venue">IEEE TVCG 2026</p>
+          </div>
+          <h1>EventTracer: Fast Path Tracing-based Event Stream Rendering</h1>
+          <p class="authors">
+            <span><strong><a href="https://lagrangeli.github.io/">Zhenyang Li<sup class="equal-mark" aria-label="equal contribution">*</sup></a></strong></span>
+            <span><strong><a href="https://andrewbxy.github.io/">Xiaoyang Bai<sup class="equal-mark" aria-label="equal contribution">*</sup></a></strong></span>
+            <span><a href="https://github.com/LJFYC007">Jinfan Lu</a></span>
+            <span><a href="https://jerry-shen0527.github.io/">Pengfei Shen</a></span>
+            <span><a href="https://www.eee.hku.hk/~elam/">Edmund Y. Lam</a></span>
+            <span><a href="https://hku.welight.fun/">Yifan (Evan) Peng</a></span>
+          </p>
+          <p class="author-note"><sup>*</sup> Equal contribution.</p>
+          <p class="affiliations">
+            The University of Hong Kong &middot; Tsinghua University
+          </p>
+          <div class="resource-row" aria-label="Project resources">
+            <a class="resource-link primary" href="https://www.computer.org/csdl/journal/tg/5555/01/11553408/2h9GzibPmRW">Paper</a>
+            <a class="resource-link" href="assets/media/eventtracer-video-supp.mp4">Video</a>
+            <a class="resource-link" href="https://github.com/Lagrangeli/EventTracer-simulator">Code</a>
+            <a class="resource-link" href="#bibtex">BibTeX</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="media-band" aria-labelledby="teaser-heading">
+        <div class="container">
+          <h2 id="teaser-heading" class="visually-hidden">EventTracer overview</h2>
+          <figure class="hero-figure">
+            <img src="assets/images/teaser_new.png" alt="EventTracer overview: event stream rendering from 3D scenes and downstream event-to-video and event-to-depth comparisons.">
+            <figcaption>
+              EventTracer directly renders high-temporal-resolution event streams from 3D scenes and preserves details for downstream event-to-video and event-to-depth tasks.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="abstract" class="section">
+        <div class="container narrow">
+          <p class="section-kicker">Abstract</p>
+          <h2>Render event streams from 3D scenes, not just from finished RGB videos.</h2>
+          <p>
+            Event cameras fire asynchronous positive and negative events whenever pixel brightness changes, making them attractive for fast motion, high dynamic range, robotics, autonomous driving, and AR/VR perception. Yet large-scale Event-RGB data remain difficult to collect because real sensors require careful hardware setup, calibration, synchronization, and task-specific annotations.
+          </p>
+          <p>
+            EventTracer is a path tracing-based rendering pipeline for efficient and physics-aware event simulation. It renders low-sample-per-pixel RGB sequences at high temporal resolution, then uses a lightweight event spiking network to convert noisy illuminance changes into realistic event pulses. A bipolar leaky integrate-and-fire unit and bidirectional EMD loss help model event polarity, internal state bias, and saturation behavior.
+          </p>
+          <p>
+            The resulting pipeline generates one second of 360p event video in about 1.12 minutes, supports 1,000 FPS event timestamps, and produces synthetic Event-RGB data that transfers better to real-world event vision tasks than common video-to-event simulators.
+          </p>
+        </div>
+      </section>
+
+      <section id="features" class="section section-muted">
+        <div class="container">
+          <p class="section-kicker">Key Features</p>
+          <div class="feature-grid">
+            <article class="feature-card">
+              <span class="feature-index">01</span>
+              <h3>Path-Traced Event Rendering</h3>
+              <p>Low-SPP Monte Carlo path tracing keeps 3D geometry, lighting, materials, and motion in the event-generation loop.</p>
+            </article>
+            <article class="feature-card">
+              <span class="feature-index">02</span>
+              <h3>Lightweight EvSNet</h3>
+              <p>A pixel-wise temporal network predicts event pulses from noisy illuminance sequences and can be integrated into Falcor with TensorRT.</p>
+            </article>
+            <article class="feature-card">
+              <span class="feature-index">03</span>
+              <h3>Physics-Aware Spiking</h3>
+              <p>BiLIF activation models positive and negative polarity, internal state bias, and saturation effects that are hard to capture with frame differencing alone.</p>
+            </article>
+            <article class="feature-card">
+              <span class="feature-index">04</span>
+              <h3>Real2Sim and Sim2Real</h3>
+              <p>Evaluation combines event statistics with downstream event-to-video and event-to-depth transfer to test whether simulated data behaves like real data.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="method" class="section">
+        <div class="container">
+          <p class="section-kicker">Method Overview</p>
+          <h2>Use noisy high-FPS path tracing as the signal, then learn how an event sensor should fire.</h2>
+          <div class="method-grid">
+            <figure class="image-panel">
+              <img src="assets/images/pipeline_new.png" alt="EventTracer pipeline with path tracing, EvSNet training, ETScenes construction, and downstream evaluation.">
+              <figcaption>
+                EventTracer renders low-SPP and high-SPP sequences from 3D scenes, trains EvSNet with V2E-generated pseudo ground truth, and builds ETScenes for downstream validation.
+              </figcaption>
+            </figure>
+            <div class="method-copy">
+              <p>
+                Traditional event simulators often work after RGB rendering is complete, which makes temporal resolution depend on costly noiseless frames. EventTracer instead makes event generation part of the rendering process: low-SPP path tracing provides high-FPS noisy illuminance, while EvSNet decides which changes correspond to event pulses.
+              </p>
+              <p>
+                This design keeps the advantages of 3D graphics, including controllable camera trajectories, scene geometry, depth maps, and future annotations such as normals, optical flow, and segmentation masks.
+              </p>
+            </div>
+          </div>
+
+          <div class="method-grid reverse">
+            <figure class="image-panel">
+              <img src="assets/images/fig2_v7.png" alt="Internal state bias and saturation effect in event sensors.">
+              <figcaption>
+                Event pixels with different internal states can fire at different timestamps under the same brightness change, and strong changes may create trailing events.
+              </figcaption>
+            </figure>
+            <div class="method-copy">
+              <p>
+                Event cameras are not simple frame-difference machines. Each pixel carries an internal state, and large illuminance changes can trigger a sequence of events rather than a single response. EventTracer uses BiLIF spiking to keep these dynamics explicit.
+              </p>
+              <p>
+                The network is deliberately local and lightweight, with a temporal receptive field of 43, so that it can run per pixel in parallel without reading an entire video clip.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="results" class="section section-muted">
+        <div class="container">
+          <p class="section-kicker">Results</p>
+          <h2>Faster rendering, more stable events, and better downstream transfer.</h2>
+          <div class="metric-grid" aria-label="Quantitative results">
+            <article class="metric-card">
+              <span class="metric-value">1.12 min</span>
+              <span class="metric-label">per second of 360p event video</span>
+            </article>
+            <article class="metric-card">
+              <span class="metric-value">1,000 FPS</span>
+              <span class="metric-label">event timestamp precision</span>
+            </article>
+            <article class="metric-card">
+              <span class="metric-value">0.071</span>
+              <span class="metric-label">event-scene alignment RMSE</span>
+            </article>
+            <article class="metric-card">
+              <span class="metric-value">0.830</span>
+              <span class="metric-label">pixel-wise correlation</span>
+            </article>
+          </div>
+
+          <div class="result-stack">
+            <figure class="image-panel">
+              <img src="assets/images/figure4.png" alt="Event stream comparisons between EventTracer, V2E, V2CE, and RGB frames.">
+              <figcaption>
+                EventTracer preserves more high-frequency scene structures than V2E and V2CE across Bistro scenes, especially where camera motion creates alternating event signals.
+              </figcaption>
+            </figure>
+            <figure class="image-panel compact-panel">
+              <img src="assets/images/histogram_new.png" alt="Event ratio histograms for EventTracer, V2E, V2CE, DVS-Voltmeter, and pseudo ground truth.">
+              <figcaption>
+                Event ratio distributions are more concentrated and closer to pseudo ground truth; the Wasserstein distance is 32.4% lower than DVS-Voltmeter and about 64% lower than V2E/V2CE.
+              </figcaption>
+            </figure>
+            <figure class="image-panel">
+              <img src="assets/images/main-viz-2.png" alt="Real2Sim event-to-video reconstruction comparisons.">
+              <figcaption>
+                In Event-to-Video reconstruction, simulated events from EventTracer retain details such as street tiles, windows, chairs, and paintings.
+              </figcaption>
+            </figure>
+            <figure class="image-panel">
+              <img src="assets/images/main-viz-1.png" alt="Real2Sim event-to-depth estimation comparisons.">
+              <figcaption>
+                In Event-to-Depth estimation, EventTracer events support more consistent layouts and clearer depth structures than V2E and V2CE.
+              </figcaption>
+            </figure>
+            <figure class="image-panel">
+              <img src="assets/images/fast-comp.png" alt="Event simulation under fast motion with EventTracer, V2E, and V2CE.">
+              <figcaption>
+                Under 10x faster camera motion, EventTracer produces trailing event activations that reflect saturation behavior in real event sensors.
+              </figcaption>
+            </figure>
+          </div>
+
+          <div class="table-wrap" role="region" aria-label="Event statistics table" tabindex="0">
+            <table>
+              <caption>Event-scene alignment statistics over six scenes and twelve intervals per scene</caption>
+              <thead>
+                <tr>
+                  <th>Method</th>
+                  <th>RMSE ↓</th>
+                  <th>KL ↓</th>
+                  <th>Corr ↑</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="ours">
+                  <td>EventTracer</td>
+                  <td>0.071</td>
+                  <td>0.833</td>
+                  <td>0.830</td>
+                </tr>
+                <tr>
+                  <td>V2E</td>
+                  <td>0.112</td>
+                  <td>4.657</td>
+                  <td>0.472</td>
+                </tr>
+                <tr>
+                  <td>V2CE</td>
+                  <td>0.117</td>
+                  <td>7.165</td>
+                  <td>0.581</td>
+                </tr>
+                <tr>
+                  <td>DVS-Voltmeter</td>
+                  <td>0.098</td>
+                  <td>1.266</td>
+                  <td>0.711</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="video" class="section">
+        <div class="container narrow">
+          <p class="section-kicker">Video</p>
+          <h2>Supplementary event-rendering results.</h2>
+          <div class="video-shell">
+            <video controls preload="metadata" poster="assets/images/video-poster.jpg">
+              <source src="assets/media/eventtracer-video-supp.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      </section>
+
+      <section id="bibtex" class="section section-muted">
+        <div class="container narrow">
+          <div class="section-heading-row">
+            <div>
+              <p class="section-kicker">BibTeX</p>
+              <h2>Citation</h2>
+            </div>
+            <button class="copy-button" type="button" data-copy-bibtex>Copy</button>
+          </div>
+          <pre class="bibtex-block"><code>@article{li2026eventtracer,
+  title={EventTracer: Fast Path Tracing-based Event Stream Rendering},
+  author={Li, Zhenyang and Bai, Xiaoyang and Lu, Jinfan and Shen, Pengfei and Lam, Edmund Y. and Peng, Yifan},
+  journal={IEEE Transactions on Visualization and Computer Graphics},
+  pages={1--13},
+  year={2026},
+  doi={10.1109/TVCG.2026.3701141}
+}</code></pre>
+        </div>
+      </section>
+
+      <section class="section acknowledgements">
+        <div class="container narrow">
+          <p class="section-kicker">Acknowledgements</p>
+          <p>
+            The authors thank Dr. Shijie Lin for fruitful discussions. This work was partially supported by the National Science Foundation of China, the Research Grants Council of Hong Kong, and the Innovation and Technology Fund of Hong Kong.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>EventTracer &middot; Fast path tracing-based event stream rendering.</p>
+      </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
